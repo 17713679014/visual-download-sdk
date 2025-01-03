@@ -3,15 +3,17 @@ import dts from 'rollup-plugin-dts';
 
 export default [
     {
-        input: 'src/index.ts',
+        input: './src/index.ts',
         output: [
             {
-                file: 'dist/index.js',
-                format: 'cjs'
+                file: './src/dist/index.js',
+                format: 'cjs',
+                exports: 'named'
             },
             {
-                file: 'dist/index.esm.js',
-                format: 'es'
+                file: './src/dist/index.esm.js',
+                format: 'es',
+                exports: 'named'
             }
         ],
         plugins: [
@@ -23,8 +25,8 @@ export default [
         external: ['axios', 'idb']
     },
     {
-        input: 'src/index.ts',
-        output: [{ file: 'dist/index.d.ts', format: 'es' }],
+        input: './src/index.ts',
+        output: [{ file: './src/dist/index.d.ts', format: 'es' }],
         plugins: [dts()]
     }
 ]; 

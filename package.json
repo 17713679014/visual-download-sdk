@@ -1,38 +1,16 @@
 {
-    "name": "xjt870-file-downloader",
+    "name": "visual-download-sdk-workspace",
     "version": "1.0.0",
-    "description": "File download SDK with progress tracking and state management",
-    "type": "module",
-    "main": "dist/index.js",
-    "module": "dist/index.esm.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist"
+    "private": true,
+    "workspaces": [
+        "src",
+        "examples/*"
     ],
-    "keywords": [
-        "download",
-        "file",
-        "progress",
-        "chunk",
-        "resume"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/17713679014/visual-download-sdk.git"
-    },
-    "author": "xjt870",
-    "license": "MIT",
     "scripts": {
-        "build": "rimraf dist && rollup -c rollup.config.mjs",
+        "build": "rimraf src/dist && rollup -c rollup.config.mjs",
         "test": "jest --no-cache",
-        "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage",
-        "lint": "eslint src --ext .ts",
-        "prepublishOnly": "npm run build"
-    },
-    "dependencies": {
-        "axios": "^0.21.1",
-        "idb": "^7.0.0"
+        "dev": "pnpm build && cd examples/vue && pnpm dev",
+        "build:example": "cd examples/vue && pnpm build"
     },
     "devDependencies": {
         "@types/jest": "^27.0.0",

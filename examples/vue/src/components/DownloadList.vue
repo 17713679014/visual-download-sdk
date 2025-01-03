@@ -59,7 +59,7 @@
                 <!-- 下载速度和剩余时间 -->
                 <div v-if="item.status === FILE_STATUS.UPLOADING" 
                      class="download-info">
-                  <img class="speed-icon" :src="speedIcon">
+                  <span v-html="speedIcon" class="icon"></span>
                   <span class="speed">{{ item.speed === '0' ? '-' : item.speed }}</span>
                   <span class="estimated-time">
                     <template v-if="getEstimatedTime(item)">
@@ -80,41 +80,41 @@
                   title="暂停"
                   class="common-icon-container"
                   @click="handleOperate(item, 'pause')">
-              <img :src="iconPauseDownload" alt="">
+              <span v-html="iconPauseDownload" class="icon"></span>
             </span>
             <!-- 排队中 -->
             <span v-if="item.status === FILE_STATUS.WAITING"
                   title="排队中"
                   class="common-icon-container">
-              <img :src="iconWaiting" alt="">
+              <span v-html="iconWaiting" class="icon"></span>
             </span>
             <!-- 继续 -->
             <span v-if="item.status === FILE_STATUS.PAUSE"
                   title="继续"
                   class="common-icon-container"
                   @click="handleOperate(item, 'continue')">
-              <img :src="iconContinueDownload" alt="">
+              <span v-html="iconContinueDownload" class="icon"></span>
             </span>
             <!-- 重试 -->
             <span v-if="item.status === FILE_STATUS.ERROR"
                   title="重试"
                   class="common-icon-container"
                   @click="handleOperate(item, 'retry')">
-              <img :src="iconRetryDownload" alt="">
+              <span v-html="iconRetryDownload" class="icon"></span>
             </span>
             <!-- 另存为 -->
             <span v-if="item.status === FILE_STATUS.SUCCESS"
                   title="另存为"
                   class="common-icon-container"
                   @click="handleOperate(item, 'save')">
-              <img :src="iconSave" alt="">
+              <span v-html="iconSave" class="icon"></span>
             </span>
             <!-- 删除 -->
             <span v-if="item.status !== FILE_STATUS.WAITING"
                   title="删除"
                   class="common-icon-container"
                   @click="handleOperate(item, 'remove')">
-              <img :src="iconDelete" alt="">
+              <span v-html="iconDelete" class="icon"></span>
             </span>
           </div>
         </div>
@@ -136,13 +136,36 @@ import type { TaskMetadata } from 'xjt870-file-downloader';
 import { FILE_STATUS } from 'xjt870-file-downloader';
 
 // 导入图标资源
-import iconSave from '@/assets/images/main/download/icon-save.png';
-import iconDelete from '@/assets/images/main/download/icon-delete.png';
-import iconContinueDownload from '@/assets/images/main/download/icon-continue.png';
-import iconPauseDownload from '@/assets/images/main/download/icon-pause.png';
-import iconRetryDownload from '@/assets/images/main/download/icon-retry.png';
-import iconWaiting from '@/assets/images/main/download/icon-waiting.png';
-import speedIcon from '@/assets/images/main/download/speed-icon.png';
+const iconSave = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+</svg>`;
+
+const iconDelete = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+</svg>`;
+
+const iconContinueDownload = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M8 5v14l11-7z"/>
+</svg>`;
+
+const iconPauseDownload = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+</svg>`;
+
+const iconRetryDownload = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+</svg>`;
+
+const iconWaiting = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+  <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+</svg>`;
+
+const speedIcon = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+  <path d="M20.38 8.57l-1.23 1.85a8 8 0 0 1-.22 7.58H5.07A8 8 0 0 1 15.58 6.85l1.85-1.23A10 10 0 0 0 3.35 19a2 2 0 0 0 1.72 1h13.85a2 2 0 0 0 1.74-1 10 10 0 0 0-.27-10.44z"/>
+  <path d="M10.59 15.41a2 2 0 0 0 2.83 0l5.66-8.49-8.49 5.66a2 2 0 0 0 0 2.83z"/>
+</svg>`;
+
 import iconFile from '@/assets/images/main/download/icon-file.png';
 import iconPdf from '@/assets/images/main/download/icon-pdf.png';
 import iconDoc from '@/assets/images/main/download/icon-doc.png';
@@ -349,5 +372,23 @@ export default defineComponent({
   text-align: center;
   color: #999;
   padding: 40px 0;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #666;
+
+  &:hover {
+    color: #333;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style> 

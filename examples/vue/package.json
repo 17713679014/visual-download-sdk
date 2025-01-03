@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "xjt870-file-downloader": "workspace:^1.0.0",
+    "xjt870-file-downloader": "workspace:*",
     "vue": "^3.3.0"
   },
   "devDependencies": {
