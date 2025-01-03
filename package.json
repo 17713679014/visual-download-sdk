@@ -1,0 +1,55 @@
+{
+    "name": "xjt870-file-downloader",
+    "version": "1.0.0",
+    "description": "File download SDK with progress tracking and state management",
+    "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "keywords": [
+        "download",
+        "file",
+        "progress",
+        "chunk",
+        "resume"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xjt870/visual-download-sdk.git"
+    },
+    "bugs": {
+        "url": "https://github.com/xjt870/visual-download-sdk/issues"
+    },
+    "homepage": "https://github.com/xjt870/visual-download-sdk#readme",
+    "author": "xjt870",
+    "license": "MIT",
+    "scripts": {
+        "build": "rimraf dist && rollup -c rollup.config.mjs",
+        "test": "jest --no-cache",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "lint": "eslint src --ext .ts",
+        "prepublishOnly": "npm run build"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "idb": "^7.0.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^27.0.0",
+        "@typescript-eslint/eslint-plugin": "^4.31.0",
+        "@typescript-eslint/parser": "^4.31.0",
+        "eslint": "^7.32.0",
+        "jest": "^27.0.6",
+        "rollup": "^3.0.0",
+        "rollup-plugin-typescript2": "^0.35.0",
+        "rollup-plugin-dts": "^5.0.0",
+        "ts-jest": "^27.0.5",
+        "typescript": "~4.5.5",
+        "fake-indexeddb": "^3.1.7",
+        "rimraf": "^5.0.0"
+    }
+} 

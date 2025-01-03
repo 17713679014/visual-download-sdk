@@ -1,0 +1,26 @@
+# Source
+src/
+__tests__/
+examples/
+
+# Config files
+.eslintrc.js
+jest.config.js
+rollup.config.js
+tsconfig.json
+tsconfig.build.json
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*
+
+# System
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/ 
