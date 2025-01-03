@@ -2,24 +2,25 @@
     "compilerOptions": {
         "target": "es2018",
         "module": "esnext",
-        "lib": ["dom", "dom.iterable", "esnext", "webworker"],
+        "lib": ["dom", "esnext"],
         "declaration": true,
         "sourceMap": true,
         "moduleResolution": "node",
         "skipLibCheck": true,
         "strict": true,
-        "isolatedModules": false,
+        "isolatedModules": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "downlevelIteration": true,
+        "jsx": "react",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "forceConsistentCasingInFileNames": true,
-        "outDir": "dist",
-        "types": ["jest", "node"]
+        "types": ["node", "jest"],
+        "baseUrl": ".",
+        "outDir": "dist"
     },
-    "include": ["src", "__tests__"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["src"],
+    "exclude": ["node_modules", "dist", "__tests__"]
 } 

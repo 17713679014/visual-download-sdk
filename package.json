@@ -18,12 +18,8 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/xjt870/visual-download-sdk.git"
+        "url": "git+https://github.com/17713679014/visual-download-sdk.git"
     },
-    "bugs": {
-        "url": "https://github.com/xjt870/visual-download-sdk/issues"
-    },
-    "homepage": "https://github.com/xjt870/visual-download-sdk#readme",
     "author": "xjt870",
     "license": "MIT",
     "scripts": {
@@ -40,6 +36,7 @@
     },
     "devDependencies": {
         "@types/jest": "^27.0.0",
+        "@types/node": "^16.0.0",
         "@typescript-eslint/eslint-plugin": "^4.31.0",
         "@typescript-eslint/parser": "^4.31.0",
         "eslint": "^7.32.0",
