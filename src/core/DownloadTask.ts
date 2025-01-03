@@ -102,12 +102,15 @@ export class DownloadTask extends EventEmitter {
                 if (chunk.data.byteLength === 0) {
                     console.log(`[DownloadTask] Downloading chunk ${index + 1}/${this.chunks.size}`);
                     try {
-                        this.controller = new AbortController();
+                        if (!this.controller) {
+                            this.controller = new AbortController();
+                        }
+
                         const response = await request.get(this.metadata.fileUrl, {
                             headers: {
                                 Range: `bytes=${chunk.start}-${chunk.end}`
                             },
-                            signal: this.controller.signal
+                            signal: this.controller?.signal
                         });
 
                         // 再次检查是否已暂停
@@ -222,6 +225,9 @@ export class DownloadTask extends EventEmitter {
     async resume(): Promise<void> {
         console.log(`[DownloadTask] Resuming download for ${this.metadata.filename}`);
         this.metadata.status = FILE_STATUS.UPLOADING;
+        if (!this.controller) {
+            this.controller = new AbortController();
+        }
         await this.downloadChunks();
     }
 
